@@ -1,0 +1,12 @@
+[project]
+name = "etcsop"
+version = "0.0.0"
+dependencies = ["kopf", "kubernetes"]
+authors = [{ name = "Piotr Majkrzak", email = "piotr@majkrzak.dev" }]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-dir]
+"etcsop" = "./src/"
