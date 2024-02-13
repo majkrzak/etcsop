@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: kube-system
+  name: etcsop
+spec:
+  serviceAccount: etcsop
+  initContainers:
+  - name: installer
+    image: python:latest
+    command:
+    - sh
+    - -c
+    - |
+      python -m venv /venv
+      . /venv/bin/activate
+      pip install https://github.com/majkrzak/etcsop/archive/master.tar.gz
+    volumeMounts:
+    - mountPath: /venv
+      name: venv
+  containers:
+  - name: operator
+    image: python:slim
+    command:
+    - sh
+    - -c
+    - |
+      . /venv/bin/activate
+      kopf run --verbose --all-namespaces -m etcsop
+    volumeMounts:
+    - mountPath: /venv
+      name: venv
+  volumes:
+  - name: venv
+    emptyDir: { }

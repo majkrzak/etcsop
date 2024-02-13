@@ -1,0 +1,8 @@
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: etcsop
+  namespace: kube-system
+spec:
+  chart: https://github.com/majkrzak/etcsop/archive/master.tar.gz
