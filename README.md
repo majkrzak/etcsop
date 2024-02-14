@@ -5,7 +5,7 @@ About
 -----
 
 `etcsop` provides a way to assemble distributed `ConfigShards` into a native `ConfigMap` containing rendered files.
-Currently only `json` is supported.
+Currently only `json` and `php` are supported.
 
 ### Input
 
@@ -57,20 +57,36 @@ Annotations:  <none>
 
 Data
 ====
+env.php:
+----
+<?php
+return [
+  "fobar" => 123,
+  "bar" => [
+    "bar1" => "test1",
+    "bar2" => "test3",
+  ],
+  "foo" => [
+    "test1",
+    "test2",
+    "test3",
+    "test4",
+  ],
+];
 env.json:
 ----
 {
+  "fobar": 123,
   "bar": {
-    "bar2": "test3",
-    "bar1": "test1"
+    "bar1": "test1",
+    "bar2": "test3"
   },
   "foo": [
-    "test3",
-    "test4",
     "test1",
-    "test2"
-  ],
-  "foobar": 123
+    "test2",
+    "test3",
+    "test4"
+  ]
 }
 ```
 
@@ -86,4 +102,8 @@ TODO
 
 - Implement more sophisticated method of configuring how the shards should be assembled.
 - Rewrite Kubernetes integration with something more serious than pykube is.
-- Refactor PHP renderer.
+- Refactor PHP renderer, preferably get out of jinja.
+- Do not remove ConfigMaps with existing data.
+- Add namespace handling to the chart.
+- Restrict required service account permissions.
+- etc...
