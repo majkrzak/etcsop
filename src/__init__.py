@@ -1,9 +1,9 @@
 import kopf
 from kopf import Labels
-import json
 from .const import API_GROUP, API_VERSION
 from .crds import ConfigShard
 from .utils import merge
+from .renderers import php, json
 from pykube import KubeConfig, HTTPClient, ConfigMap
 
 api = HTTPClient(KubeConfig.from_env())
@@ -53,6 +53,7 @@ def config_shard_handler(reason: str, namespace: str, labels: Labels, **_):
         )
 
     config_map.obj["data"] = {
-        "env.json": json.dumps(data, indent=2),
+        "env.json": json(data),
+        "env.php": php(data),
     }
     config_map.update()

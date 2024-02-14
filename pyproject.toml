@@ -1,7 +1,7 @@
 [project]
 name = "etcsop"
 version = "0.0.0"
-dependencies = ["kopf", "pykube-ng"]
+dependencies = ["kopf", "pykube-ng", "jinja2"]
 authors = [{ name = "Piotr Majkrzak", email = "piotr@majkrzak.dev" }]
 
 [build-system]
