@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: kube-system
-  name: etcsop
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Release.Name }}
 spec:
-  serviceAccount: etcsop
+  serviceAccount: {{ .Release.Name }}
   initContainers:
   - name: installer
     image: python:latest
