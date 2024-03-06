@@ -104,6 +104,5 @@ TODO
 - Rewrite Kubernetes integration with something more serious than pykube is.
 - Refactor PHP renderer, preferably get out of jinja.
 - Do not remove ConfigMaps with existing data.
-- Add namespace handling to the chart.
 - Restrict required service account permissions.
 - etc...
